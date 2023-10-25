@@ -5,14 +5,22 @@ import com.futureB.backend.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
     public User activateUser(User user) {
-        User userInDB = userRepository.findByEmailId(user.getEmailId());
-        userInDB.setEnabled(true);
+        Optional<User> userInDB = userRepository.findByEmailId(user.getEmailId());
+        if(userInDB.isPresent()){
+            User existingUser = userInDB.get();
+            existingUser.setEnabled(true);
+            return userRepository.save(existingUser);
+        }else{
+            return null;
+        }
         //TODO delete the activation token entry after successful activation
-        return userRepository.save(userInDB);
+
     }
 }

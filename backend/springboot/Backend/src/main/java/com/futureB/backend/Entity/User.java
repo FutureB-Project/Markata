@@ -1,13 +1,19 @@
 package com.futureB.backend.Entity;
 
 import jakarta.persistence.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name = "User")
-public class User {
+public class User implements UserDetails {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
 	@Column(name = "first_name", nullable = false)
@@ -31,7 +37,18 @@ public class User {
 	@Column(name = "date")
 	private String date;
 
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
 	private boolean enabled = false;
+
+	@Enumerated(EnumType.STRING)
+	private Role role;
 
 	public User() {
 	}
@@ -79,8 +96,33 @@ public class User {
 		this.emailId = emailId;
 	}
 
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return List.of(new SimpleGrantedAuthority(role.name()));
+	}
+
 	public String getPassword() {
 		return password;
+	}
+
+	@Override
+	public String getUsername() {
+		return emailId;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
 	}
 
 	public void setPassword(String password) {

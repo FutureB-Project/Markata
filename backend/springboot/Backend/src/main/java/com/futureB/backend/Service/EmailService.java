@@ -25,7 +25,7 @@ public class EmailService {
 //                        +"http://localhost:8080/users/activate-account?token=" + activationToken.getConfirmationToken()
 
         );
-        System.out.println(activationToken.getConfirmationToken());
+        System.out.println("This is an activation token" + activationToken.getConfirmationToken());
     }
 
     public void sendEmail(String toEmail, String fromEmail, String subject, String body) {

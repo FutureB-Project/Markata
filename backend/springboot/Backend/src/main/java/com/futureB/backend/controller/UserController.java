@@ -5,9 +5,11 @@ import java.util.List;
 import java.util.Map;
 
 import com.futureB.backend.Entity.ActivationToken;
+import com.futureB.backend.Entity.Role;
 import com.futureB.backend.Entity.Terms;
 import com.futureB.backend.Service.ActivationTokenService;
 import com.futureB.backend.Service.EmailService;
+import com.futureB.backend.config.JwtService;
 import com.futureB.backend.exception.ResourceNotFoundException;
 import com.futureB.backend.repository.TermsRepository;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +23,7 @@ import com.futureB.backend.repository.UserRepository;
 
 @CrossOrigin(origins = "*")
 @RestController
+@RequestMapping("api/v1/")
 @RequiredArgsConstructor
 public class UserController {
 
@@ -30,6 +33,7 @@ public class UserController {
 	private final PasswordEncoder passwordEncoder;
 	private final EmailService emailService;
 	private final ActivationTokenService activationTokenService;
+	private final JwtService jwtService;
 
 
 	// get all Users
@@ -38,7 +42,7 @@ public class UserController {
 		return userRepository.findAll();
 	}
 
-	//This is for getting the terms and coditions from the data base
+	//This is for getting the terms and co ditions from the database
 	@GetMapping("/Terms/{id}")
 	public ResponseEntity<Terms> getTermsById(@PathVariable Long id){
 		System.out.println(id);
@@ -64,18 +68,23 @@ public class UserController {
 	public ResponseEntity<String> createUser(@RequestBody User user) {
 		// log
 		//System.out.println("\n" + User + "\n");
-		System.out.println(userRepository.findByEmailId(user.getEmailId()) + "\n");
-		if(userRepository.findByEmailId(user.getEmailId())==null){
+		System.out.println(userRepository.findByEmailId(user.getEmailId()).isPresent());
+		if(!userRepository.findByEmailId(user.getEmailId()).isPresent()){
 			user.setPassword(passwordEncoder.encode(user.getPassword()));
+			System.out.println("Password encryption during registration: " + user.getPassword());
+			user.setRole(Role.USER);
 			User userInDB = userRepository.save(user);
+			var jwtToken = jwtService.generateToken(userInDB);
 			ActivationToken activationToken = activationTokenService.createAndPersistActivationToken(userInDB);
-//			System.out.println(activationToken);
-			emailService.sendActivationEmail(userInDB, activationToken);
+			System.out.println(activationToken);
+			//emailService.sendActivationEmail(userInDB, activationToken);
 			return ResponseEntity.ok("Successful registration");
 		}
 		return ResponseEntity.status(409).body("User Already Exist");
 
 	}
+
+
 
 	//This activates The user using the generated and sent token
 	@GetMapping("/users/activate-account")

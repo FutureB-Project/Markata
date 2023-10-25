@@ -16,10 +16,10 @@ public class Markato {
 
 	}
 
-	@Bean
-	public PasswordEncoder encoder() {
-		return new BCryptPasswordEncoder();
-	}
+//	@Bean
+//	public PasswordEncoder encoder() {
+//		return new BCryptPasswordEncoder();
+//	}
 
 
 }
