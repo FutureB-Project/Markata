@@ -1,0 +1,9 @@
+# Ignore the node_modules directory
+node_modules/
+
+# Ignore specific files
+.env
+.DS_Store
+
+# Ignore all log files
+*.log

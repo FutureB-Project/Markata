@@ -1,15 +1,15 @@
-.App {
-  text-align: center;
+/* .App { */
+/* text-align: center;
   display: flex;
   min-height: 100vh;
-  align-items: center;
-  justify-content: center;
-  /* color: white; */
-  background-image: linear-gradient(79deg, #2196f3, #e9ebdd 48%, #4dabf7);
-  /* background-image: linear-gradient(79deg, #2196f3, #5d5e57 48%, #f7944d); */
-  /* background: rgba(0, 0, 0, 0.85); */
-}
-
+  align-items: center; */
+/* justify-content: center; */
+/* color: white; */
+/* background-image: linear-gradient(79deg, #2196f3, #e9ebdd 48%, #4dabf7); */
+/* background-image: linear-gradient(79deg, #2196f3, #5d5e57 48%, #f7944d); */
+/* background: rgba(0, 0, 0, 0.85); */
+/* } */
+/* 
 .auth-form-container,
 .login-form,
 .signup-form {
@@ -112,9 +112,9 @@ input:valid {
   font-size: 12px;
   margin-top: 5px;
 } */
-input:required {
-  border: none;
-}
-.error {
-  border-color: red;
-}
+/* input:required { */
+/* border: none; */
+/* } */
+/* .error { */
+/* border-color: red; */
+/* } */
