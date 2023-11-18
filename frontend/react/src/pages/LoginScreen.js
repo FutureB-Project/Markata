@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import logo from "./logo.png";
+import logo from "../components/logo.png";
 import api from "../api/link";
 import { useNavigate } from "react-router-dom";
 
@@ -57,13 +57,13 @@ function LoginScreen(props) {
   };
 
   return (
-    <div className="auth-form-container">
+    <div className="flex flex-col">
       <div className="logo">
         <img src={logo} alt="logo" />
         <h1>Markata</h1>
       </div>
       <h2>Login</h2>
-      <form className="login-form" onSubmit={handleSubmit}>
+      <form className="flex flex-col" onSubmit={handleSubmit}>
         <label htmlFor="email">Email</label>
         <input
           // style={{ border: `${errorEmail ? "red" : "none"}` }}

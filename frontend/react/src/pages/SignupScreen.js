@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import logo from "./logo.png";
-import Modal from "./Modal";
+import logo from "../components/logo.png";
+import Modal from "../components/Modal";
 import api, { baseAPI } from "../api/link";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -165,15 +165,15 @@ function SignupScreen(props) {
   }, []);
 
   return (
-    <div className="auth-form-container">
-      <div className="logo">
-        <img src={logo} alt="logo" />
-        <h1>Markata</h1>
+    <div className="flex flex-col text-center min-h-screen items-center justify-center text-[black]">
+      <div className="flex text-[#2196f3] m-auto">
+        <img className="w-[90px] h-[90px]" src={logo} alt="logo" />
+        <h1 className="font-black">Markata</h1>
       </div>
-      <h2>Signup</h2>
-      <form className="signup-form" onSubmit={handleSubmit}>
-        <label htmlFor="fName lName">Full Name</label>
-        <div className="side-by-side">
+      <h1>Signup</h1>
+      <form className="flex flex-col" onSubmit={handleSubmit}>
+        <label className="text-left px-0 py-1" htmlFor="fName lName">Full Name</label>
+        <div className="flex flex-row justify-between;">
           <input
             value={fName}
             name="fName"
@@ -181,7 +181,7 @@ function SignupScreen(props) {
             id="fName"
             placeholder="Enter first name"
             required
-            className={isEmpty && isSubmitted ? "error" : ""}
+            className={isEmpty && isSubmitted ? "outline-0 bg-[#4dabf72c] mx-0 my-2 p-[0.9rem] rounded-[7px] invalid:border-[#ff0000] valid:border-[none] required:border-[none] border-[red]" : "outline-0 bg-[#4dabf72c] mx-0 my-2 p-[0.9rem] rounded-[7px] invalid:border-[#ff0000] valid:border-[none] required:border-[none]"}
           />
           <input
             value={lName}
@@ -190,11 +190,11 @@ function SignupScreen(props) {
             id="lName"
             placeholder="Enter last name"
             required
-            className={isEmpty && isSubmitted ? "error" : ""}
+            className={isEmpty && isSubmitted ? "outline-0 bg-[#4dabf72c] mx-0 my-2 p-[0.9rem] rounded-[7px] invalid:border-[#ff0000] valid:border-[none] required:border-[none] border-[red]" : "outline-0 bg-[#4dabf72c] mx-0 my-2 p-[0.9rem] rounded-[7px] invalid:border-[#ff0000] valid:border-[none] required:border-[none]"}
           />
         </div>
 
-        <label htmlFor="email">Email</label>
+        <label className="text-left px-0 py-1" htmlFor="email">Email</label>
         <input
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -203,9 +203,9 @@ function SignupScreen(props) {
           id="email"
           name="email"
           required
-          className={isEmpty && isSubmitted ? "error" : ""}
+          className={isEmpty && isSubmitted ? "outline-0 bg-[#4dabf72c] mx-0 my-2 p-[0.9rem] rounded-[7px] invalid:border-[#ff0000] valid:border-[none] required:border-[none] border-[red]" : "outline-0 bg-[#4dabf72c] mx-0 my-2 p-[0.9rem] rounded-[7px] invalid:border-[#ff0000] valid:border-[none] required:border-[none]"}
         />
-        <label htmlFor="password">Password</label>
+        <label className="text-left px-0 py-1" htmlFor="password">Password</label>
         <input
           value={password}
           onChange={handlePasswordChange}
@@ -215,7 +215,7 @@ function SignupScreen(props) {
           name="password"
           data-testid="password"
           required
-          className={isEmpty && isSubmitted ? "error" : ""}
+          className={isEmpty && isSubmitted ? "outline-0 bg-[#4dabf72c] mx-0 my-2 p-[0.9rem] rounded-[7px] invalid:border-[#ff0000] valid:border-[none] required:border-[none] border-[red]" : "outline-0 bg-[#4dabf72c] mx-0 my-2 p-[0.9rem] rounded-[7px] invalid:border-[#ff0000] valid:border-[none] required:border-[none]"}
         />
         <div
           className="password-strength-bar"
@@ -225,7 +225,7 @@ function SignupScreen(props) {
             backgroundColor: getPasswordColor(),
           }}
         ></div>
-        <label htmlFor="date">Date of Birth</label>
+        <label className="text-left px-0 py-1" htmlFor="date">Date of Birth</label>
         <input
           value={date}
           onChange={(e) => setDate(e.target.value)}
@@ -234,7 +234,7 @@ function SignupScreen(props) {
           name="date"
           data-testid="date"
           required
-          className={isEmpty && isSubmitted ? "error" : ""}
+          className={isEmpty && isSubmitted ? "outline-0 bg-[#4dabf72c] mx-0 my-2 p-[0.9rem] rounded-[7px] invalid:border-[#ff0000] valid:border-[none] required:border-[none] border-[red]" : "outline-0 bg-[#4dabf72c] mx-0 my-2 p-[0.9rem] rounded-[7px] invalid:border-[#ff0000] valid:border-[none] required:border-[none]"}
         />
 
         {truthy ? <p style={{ color: "red" }}>{`${msg}`}</p> : <p></p>}
@@ -247,7 +247,7 @@ function SignupScreen(props) {
             required
           />{" "}
           Agree the terms and conditions.{" "}
-          <span className="link-btn" onClick={() => setIsOpen(true)}>
+          <span className="bg-none cursor-pointer text-[#2196f3] underline font-semibold" onClick={() => setIsOpen(true)}>
             Read Here
           </span>
           <div>
@@ -256,7 +256,8 @@ function SignupScreen(props) {
             </Modal>
           </div>
         </div>
-        <button type="submit">Signup</button>
+        <button className="bg-[#2196f3] cursor-pointer text-[white] text-[larger] w-[200px] mt-5 mb-auto mx-auto p-5 rounded-[30px] border-[none];
+" type="submit">Signup</button>
       </form>
       <p>
         Already have an account?{" "}

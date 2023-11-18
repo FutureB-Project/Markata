@@ -1,14 +1,14 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import "./App.css";
-import LoginScreen from "./LoginScreen";
-import SignupScreen from "./SignupScreen";
-import HomeScreen from "./HomeScreen";
-import CartScreen from "./CartScreen";
-import UserActivateScreen from "./UserActivateScreen";
-import SuccessVerificationPage from "./SuccessVerificationPage";
-import SuccessRegistration from "./SuccessRegistration";
-import ErrorBoundary from "./ErrorBoundary";
+// import "./App.css";
+import LoginScreen from "./pages/LoginScreen";
+import SignupScreen from "./pages/SignupScreen";
+import HomeScreen from "./pages/HomeScreen";
+import CartScreen from "./pages/CartScreen";
+import UserActivateScreen from "./pages/UserActivateScreen";
+import SuccessVerificationPage from "./pages/SuccessVerificationPage";
+import SuccessRegistration from "./pages/SuccessRegistration";
+import ErrorBoundary from "./components/ErrorBoundary";
 
 function App() {
   return (
@@ -33,6 +33,8 @@ function App() {
               path="/SuccessRegistration"
               element={<SuccessRegistration />}
             />
+            <Route path="/about" />
+            <Route path="/contact" />
           </Routes>
         </ErrorBoundary>
       </Router>

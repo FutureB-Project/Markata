@@ -33,13 +33,13 @@ function ImageSlider() {
   };
 
   return (
-    <div className="max-w-[700px] h-[500px] mt-1 w-full m-auto py-16 px-4 relative group">
+    <div className="max-w-[1440px] h-[500px] w-full py-4 px-4 relative group">
       <div
         style={{
           backgroundImage: `url(${slides[currentIndex].url})`,
           backgroundSize: "cover !important",
         }}
-        className="w-full h-full rounded-2xl bg-center bg-cover duration-500"
+        className="w-full h-full rounded-xl bg-center bg-cover duration-500"
       >
         <div className="hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] left-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer">
           <BsChevronCompactLeft onClick={prevSlide} size={30} />

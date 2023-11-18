@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import api from "../api/link";
-import logo from "./logo.png";
+import logo from "../components/logo.png";
 
 // function UserActivateScreen() {
 //   // const { truthy, setTruthy } = useState(false);
@@ -183,7 +183,7 @@ const UserActivateScreen = () => {
   };
 
   return (
-    <div className="auth-form-container">
+    <div className="flex flex-col">
       <div className="logo">
         <img src={logo} alt="logo" />
         <h1>Markata</h1>

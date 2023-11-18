@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import logo from "./logo.png";
+import logo from "../components/logo.png";
 
 
 function SuccessVerificationPage() {
@@ -11,7 +11,7 @@ function SuccessVerificationPage() {
   };
 
   return (
-    <div className="auth-form-container">
+    <div className="flex flex-col">
       <div className="logo">
         <img src={logo} alt="logo" />
         <h1>Markata</h1>
